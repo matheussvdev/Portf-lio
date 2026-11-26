@@ -167,3 +167,30 @@ html{scroll-padding-top:78px}
         padding-left: 12px;
     }
 }
+/* Projetos: distribuição dinâmica e carrossel responsivo */
+.projects-layout { min-width: 0; }
+.projects-grid.projects-count-1 { grid-template-columns: minmax(0, 560px); justify-content: center; }
+.projects-grid.projects-count-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.projects-grid.projects-count-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.projects-layout .project-card { min-width: 0; }
+.projects-layout .project-visual { height: auto; aspect-ratio: 16 / 9; }
+.projects-grid.projects-carousel { display: grid; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: calc((100% - 36px) / 3); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding: 10px 0 16px; }
+.projects-carousel::-webkit-scrollbar { display: none; }
+.projects-carousel .project-card { scroll-snap-align: start; }
+.projects-controls { display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 18px; }
+.projects-controls button { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; background: #0c121a; color: var(--gold); border: 1px solid #c6a67555; cursor: pointer; }
+.projects-controls button:disabled { opacity: .3; cursor: default; }
+.projects-dots { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px; }
+.projects-dots button { width: 24px; height: 30px; border: 0; background: transparent; }
+.projects-dots button::after { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #627080; }
+.projects-dots button[aria-current=true]::after { background: var(--gold); }
+.projects-controls button:focus-visible, .projects-carousel:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.projects-empty { color: #a6b1bd; }
+@media (max-width: 900px) {
+  .projects-grid.projects-count-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .projects-grid.projects-carousel { grid-auto-columns: calc((100% - 18px) / 2); }
+}
+@media (max-width: 680px) {
+  .projects-grid.projects-count-1, .projects-grid.projects-count-2, .projects-grid.projects-count-3 { grid-template-columns: minmax(0, 1fr); }
+  .projects-grid.projects-carousel { grid-auto-columns: 100%; }
+}
